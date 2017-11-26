@@ -6,7 +6,8 @@ import com.tsp.shared.Utility;
 import com.tsp.shared.TourManager;
 
 public class SimulatedAnnealing {
-    public static void main(String[] args) {
+
+    public static void startHeuristic() {
 
 
         Utility.readCities("src/com/tsp/shared/usa115475.tsp");
