@@ -31,9 +31,9 @@ public class SimulatedAnnealing {
         return r.nextInt(1000) / 1000.0;
     }
 
-    /*
+    /**
     * The heuristic main algorithm implementation
-    * */
+    */
     public static void startHeuristic() {
 
 
