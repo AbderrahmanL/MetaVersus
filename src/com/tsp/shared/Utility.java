@@ -26,8 +26,9 @@ public class Utility {
 		try {
 			FileReader fr = new FileReader(filePath);
 			BufferedReader reader = new BufferedReader(fr);
-			while((line = reader.readLine())!= null){
-
+//			while((line = reader.readLine())!= null){
+			for(int i = 0; i<100 ; i++) {
+				line = reader.readLine();
 				coords = line.split(" ");
 				if (!coords[0].matches("[0-9]*") )
 					continue;

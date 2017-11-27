@@ -41,7 +41,7 @@ public class SimulatedAnnealing {
 
         if (TourManager.numberOfCities()>0){
             //Set initial temp
-            double temp = 1000000000;
+            double temp = 10000000;
 
             //Cooling rate
             double coolingRate = 0.0000003;
@@ -55,33 +55,40 @@ public class SimulatedAnnealing {
             // We would like to keep track if the best solution
             // Assume best solution is the current solution
             Tour best = new Tour(currentSolution.getTour());
-
+            Tour newSolution;
+            int tourPos1 ;
+            int tourPos2 ;
+            City citySwap1 ;
+            City citySwap2 ;
+            int currentDistance  ;
+            int neighbourDistance ;
+            double rand ;
             // Loop until system has cooled
             while (temp > 1) {
                 // Create new neighbour tour
-                Tour newSolution = new Tour(currentSolution.getTour());
+                newSolution = new Tour(currentSolution.getTour());
 
                 // Get random positions in the tour
-                int tourPos1 = Utility.randomInt(0 , newSolution.tourSize());
-                int tourPos2 = Utility.randomInt(0 , newSolution.tourSize());
+                tourPos1 = Utility.randomInt(0 , newSolution.tourSize());
+                tourPos2 = Utility.randomInt(0 , newSolution.tourSize());
 
                 //to make sure that tourPos1 and tourPos2 are different
                 while(tourPos1 == tourPos2) {tourPos2 = Utility.randomInt(0 , newSolution.tourSize());}
 
                 // Get the coords at selected positions in the tour
-                City citySwap1 = newSolution.getCity(tourPos1);
-                City citySwap2 = newSolution.getCity(tourPos2);
+                citySwap1 = newSolution.getCity(tourPos1);
+                citySwap2 = newSolution.getCity(tourPos2);
 
                 // Swap them
                 newSolution.setCity(tourPos2, citySwap1);
                 newSolution.setCity(tourPos1, citySwap2);
 
                 // Get energy of solutions
-                int currentDistance   = currentSolution.getTotalDistance();
-                int neighbourDistance = newSolution.getTotalDistance();
+                currentDistance   = currentSolution.getTotalDistance();
+                neighbourDistance = newSolution.getTotalDistance();
 
                 // Decide if we should accept the neighbour
-                double rand = randomDouble();
+                rand = randomDouble();
                 if (acceptanceProbability(currentDistance, neighbourDistance, temp) > rand) {
                     currentSolution = new Tour(newSolution.getTour());
                 }
