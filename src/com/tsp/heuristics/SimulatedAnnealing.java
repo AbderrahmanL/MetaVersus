@@ -41,10 +41,10 @@ public class SimulatedAnnealing {
 
         if (TourManager.numberOfCities()>0){
             //Set initial temp
-            double temp = 1000000;
+            double temp = 1000000000;
 
             //Cooling rate
-            double coolingRate = 0.003;
+            double coolingRate = 0.0000003;
 
             //create random intial solution
             Tour currentSolution = new Tour();
@@ -93,6 +93,7 @@ public class SimulatedAnnealing {
 
                 // Cool system
                 temp *= 1 - coolingRate;
+                System.out.println(temp);
             }
 
             System.out.println("Final solution distance: " + best.getTotalDistance());
