@@ -13,7 +13,8 @@ public class Tour{
     //to hold a tour of cities
     private ArrayList<City> tour = new ArrayList<City>();
     
-    //we assume initial value of distance is 0 
+    //we assume initial value of distance is 0
+    private double fitness = 0;
     private int distance = 0;
     
     //Constructor
@@ -65,11 +66,19 @@ public class Tour{
         // If the tour has been altered we need to reset the fitness and distance
         distance = 0;
     }
-    
+
+    // Gets the tours fitness
+    public double getFitness() {
+        if (fitness == 0) {
+            fitness = 1/(double)getTotalDistance();
+        }
+        return fitness;
+    }
+
     /**
      * Computes and returns the total distance of the tour
      */
-    public int getTotalDistance(){
+    public double getTotalDistance(){
     	if (distance == 0) {
             int tourDistance = 0;
             // Loop through our tour's cities
@@ -100,7 +109,12 @@ public class Tour{
     public int tourSize() {
         return tour.size();
     }
-    
+
+    // Check if the tour contains a city
+    public boolean containsCity(City city){
+        return tour.contains(city);
+    }
+
     @Override
     /**
      * To print out a list of all the cities in the tour

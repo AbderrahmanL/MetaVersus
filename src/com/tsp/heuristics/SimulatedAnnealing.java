@@ -13,12 +13,12 @@ public class SimulatedAnnealing {
     static double temp = 1000000000;
 
     //Cooling rate
-    static double coolingRate = 0.00000003;
+    static double coolingRate = 0.0000003;
     
     /**
      * Calculates the acceptance probability
      */
-    public static double acceptanceProbability(int currentDistance, int newDistance, double temperature) {
+    public static double acceptanceProbability(double currentDistance, double newDistance, double temperature) {
         // If the new solution is better, accept it
         if (newDistance < currentDistance) {
             return 1.0;
@@ -57,7 +57,8 @@ public class SimulatedAnnealing {
             // Assume best solution is the current solution
             Tour best = new Tour(currentSolution.getTour());
             Tour newSolution = null;
-            int tourPos1 ,tourPos2 ,currentDistance,neighbourDistance;
+            int tourPos1 ,tourPos2 ;
+            double currentDistance,neighbourDistance;
             City citySwap1,citySwap2 ;
             double rand ;
             // Loop until system has cooled
@@ -79,7 +80,6 @@ public class SimulatedAnnealing {
             }.start();
             while (temp > 1) {
                 // Create new neighbour tour
-            	if(temp==1000000000)
                 newSolution = new Tour(currentSolution.getTour());
 
                 // Get random positions in the tour
@@ -102,15 +102,15 @@ public class SimulatedAnnealing {
                 neighbourDistance = newSolution.getTotalDistance();
 
                 // Decide if we should accept the neighbour
-//                rand = randomDouble();
-//                if (acceptanceProbability(currentDistance, neighbourDistance, temp) > rand) {
-//                    currentSolution = new Tour(newSolution.getTour());
-//                }
-//
-//                // Keep track of the best solution found
-//                if (currentSolution.getTotalDistance() < best.getTotalDistance()) {
-//                    best = new Tour(currentSolution.getTour());
-//                }
+                rand = randomDouble();
+                if (acceptanceProbability(currentDistance, neighbourDistance, temp) > rand) {
+                    currentSolution = new Tour(newSolution.getTour());
+                }
+
+                // Keep track of the best solution found
+                if (currentSolution.getTotalDistance() < best.getTotalDistance()) {
+                    best = new Tour(currentSolution.getTour());
+                }
 
                 // Cool system
                 temp *= 1 - coolingRate;
