@@ -7,13 +7,13 @@ import com.tsp.shared.TourManager;
 
 import java.util.Random;
 
-public class SimulatedAnnealing {
+public class SimulatedAnnealing implements IHeuristic{
 
 	 //Set initial temp
-    static double temp = 1000000000;
+    static double temp = 99999999;
 
     //Cooling rate
-    static double coolingRate = 0.0000003;
+    static double coolingRate = 0.000003;
     
     /**
      * Calculates the acceptance probability
@@ -40,7 +40,7 @@ public class SimulatedAnnealing {
     /**
     * The heuristic main algorithm implementation
     */
-    public static void startHeuristic() {
+    public void startHeuristic() {
 
 
         Utility.readCities("src/com/tsp/shared/usa115475.tsp");

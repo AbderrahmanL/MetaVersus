@@ -5,14 +5,14 @@ import com.tsp.shared.City;
 import com.tsp.shared.Tour;
 import com.tsp.shared.Utility;
 
-public class GA {
+public class GA implements IHeuristic {
 
     /* GA parameters */
     private static final double mutationRate = 0.015;
     private static final int tournamentSize = 5;
     private static final boolean elitism = true;
     private static int i = 0;
-    private static int nbrGenerations = 100000;
+    private static int nbrGenerations = 5000000;
 
     // Evolves a population over one generation
     public static Population evolvePopulation(Population pop) {
@@ -120,7 +120,7 @@ public class GA {
         return fittest;
     }
 
-    public static void startHeuristic(){
+    public void startHeuristic(){
         Utility.readCities("src/com/tsp/shared/usa115475.tsp");
         // Initialize population
         Population pop = new Population(50, true);
