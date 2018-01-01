@@ -10,7 +10,7 @@ import java.util.Random;
 public class SimulatedAnnealing implements IHeuristic{
 
 	 //Set initial temp
-    static double temp = 99999999;
+    static double temp = 9999999;
 
     //Cooling rate
     static double coolingRate = 0.000003;
@@ -49,7 +49,7 @@ public class SimulatedAnnealing implements IHeuristic{
 
             //create random intial solution
             Tour currentSolution = new Tour();
-            currentSolution.generateIndividual();
+            currentSolution.generateRandom();
 
             System.out.println("Total distance of initial solution: " + currentSolution.getTotalDistance());
 

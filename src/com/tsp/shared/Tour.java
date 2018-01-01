@@ -42,13 +42,17 @@ public class Tour{
     /**
      * Creates a random tour (i.e. individual or candidate solution)
      */
-    public void generateIndividual() {
+    public void generateRandom() {
         // Loop through all our destination cities and add them to our tour
         for (int cityIndex = 0; cityIndex < TourManager.numberOfCities(); cityIndex++) {
           setCity(cityIndex, TourManager.getCity(cityIndex));
         }
         // Randomly reorder the tour
         Collections.shuffle(tour);
+    }
+
+    public void generateWithNearestNeighbor(){
+
     }
 
     /**
