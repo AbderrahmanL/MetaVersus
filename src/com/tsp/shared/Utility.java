@@ -40,6 +40,32 @@ public class Utility {
 			e.printStackTrace();
 		}
 	}
+
+	/*
+    * Get A neighbor solution
+     */
+	public static Tour getNeighbor(Tour tour){
+		City citySwap1,citySwap2 ;
+		int tourPos1 ,tourPos2 ;
+		Tour neighbor = new Tour(tour.getTour());
+
+		// Get random positions in the tour
+		tourPos1 = Utility.randomInt(0 , neighbor.tourSize());
+		tourPos2 = Utility.randomInt(0 , neighbor.tourSize());
+
+		//to make sure that tourPos1 and tourPos2 are different
+		while(tourPos1 == tourPos2) {tourPos2 = Utility.randomInt(0 , neighbor.tourSize());}
+
+		// Get the coords at selected positions in the tour
+		citySwap1 = neighbor.getCity(tourPos1);
+		citySwap2 = neighbor.getCity(tourPos2);
+
+		// Swap them
+		neighbor.setCity(tourPos2, citySwap1);
+		neighbor.setCity(tourPos1, citySwap2);
+
+		return neighbor;
+	}
 	
 	/**
 	 * returns a random int value within a given range

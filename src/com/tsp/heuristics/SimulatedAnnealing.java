@@ -1,11 +1,11 @@
 package com.tsp.heuristics;
-
-import com.tsp.shared.City;
 import com.tsp.shared.Tour;
 import com.tsp.shared.Utility;
 import com.tsp.shared.TourManager;
 
 import java.util.Random;
+
+import static com.tsp.shared.Utility.getNeighbor;
 
 public class SimulatedAnnealing implements IHeuristic{
 
@@ -57,9 +57,7 @@ public class SimulatedAnnealing implements IHeuristic{
             // Assume best solution is the current solution
             Tour best = new Tour(currentSolution.getTour());
             Tour newSolution = null;
-            int tourPos1 ,tourPos2 ;
             double currentDistance,neighbourDistance;
-            City citySwap1,citySwap2 ;
             double rand ;
             // Loop until system has cooled
             new Thread() {
@@ -80,22 +78,7 @@ public class SimulatedAnnealing implements IHeuristic{
             }.start();
             while (temp > 1) {
                 // Create new neighbour tour
-                newSolution = new Tour(currentSolution.getTour());
-
-                // Get random positions in the tour
-                tourPos1 = Utility.randomInt(0 , newSolution.tourSize());
-                tourPos2 = Utility.randomInt(0 , newSolution.tourSize());
-
-                //to make sure that tourPos1 and tourPos2 are different
-                while(tourPos1 == tourPos2) {tourPos2 = Utility.randomInt(0 , newSolution.tourSize());}
-
-                // Get the coords at selected positions in the tour
-                citySwap1 = newSolution.getCity(tourPos1);
-                citySwap2 = newSolution.getCity(tourPos2);
-
-                // Swap them
-                newSolution.setCity(tourPos2, citySwap1);
-                newSolution.setCity(tourPos1, citySwap2);
+                newSolution = getNeighbor(currentSolution);
 
                 // Get energy of solutions
                 currentDistance   = currentSolution.getTotalDistance();
