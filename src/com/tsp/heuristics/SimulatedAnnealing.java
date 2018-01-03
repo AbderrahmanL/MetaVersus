@@ -40,11 +40,11 @@ public class SimulatedAnnealing implements IHeuristic{
     /**
     * The heuristic main algorithm implementation
     */
-    public void startHeuristic() {
+    public Tour startHeuristic() {
 
 
         Utility.readCities("src/com/tsp/shared/usa115475.tsp");
-
+        Tour best = null;
         if (TourManager.numberOfCities()>0){
 
             //create random intial solution
@@ -55,7 +55,7 @@ public class SimulatedAnnealing implements IHeuristic{
 
             // We would like to keep track if the best solution
             // Assume best solution is the current solution
-            Tour best = new Tour(currentSolution.getTour());
+            best = new Tour(currentSolution.getTour());
             Tour newSolution = null;
             double currentDistance,neighbourDistance;
             double rand ;
@@ -103,5 +103,6 @@ public class SimulatedAnnealing implements IHeuristic{
         }
 
 
+        return best;
     }
 }

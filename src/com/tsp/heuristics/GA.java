@@ -12,7 +12,7 @@ public class GA implements IHeuristic {
     private static final int tournamentSize = 5;
     private static final boolean elitism = true;
     private static int i = 0;
-    private static int nbrGenerations = 5000000;
+    private static int nbrGenerations = 5000;
 
     // Evolves a population over one generation
     public static Population evolvePopulation(Population pop) {
@@ -120,7 +120,7 @@ public class GA implements IHeuristic {
         return fittest;
     }
 
-    public void startHeuristic(){
+    public Tour startHeuristic(){
         Utility.readCities("src/com/tsp/shared/usa115475.tsp");
         // Initialize population
         Population pop = new Population(50, true);
@@ -151,5 +151,6 @@ public class GA implements IHeuristic {
         // Print final results
         System.out.println("Finished");
         System.out.println("Final distance: " + pop.getFittest().getTotalDistance());
+        return pop.getFittest();
     }
 }

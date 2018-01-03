@@ -11,6 +11,13 @@ public class TourManager {
     // Holds our cities
     private static ArrayList<City> destinationCities = new ArrayList<City>();
 
+	/**
+	 Returns tour information
+	 */
+	public static ArrayList<City> getCitiesList(){
+		return destinationCities;
+	}
+
     /**
 	 * Adds a destination city
 	 */
